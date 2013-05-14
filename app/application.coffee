@@ -49,7 +49,7 @@ module.exports = class Application extends Chaplin.Application
     # or navigation views.
     # e.g. new NavigationController()
 
-   new MenuController()   
+    new MenuController()   
    
 
   # Create additional mediator properties
