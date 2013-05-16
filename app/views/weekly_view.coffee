@@ -4,3 +4,4 @@ View = require 'views/base/view'
 module.exports = class WeeklyView extends View
   template: template
   container: '#todo-list'
+  autoRender: on

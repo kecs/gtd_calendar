@@ -1,6 +1,7 @@
 View = require 'views/base/view'
 template = require 'views/templates/menu'
 Chaplin = require 'chaplin'
+mediator = require 'mediator'
 
 module.exports = class MenuView extends View
   template: template
@@ -19,8 +20,7 @@ module.exports = class MenuView extends View
     e.stopPropagation()
     try
       href = e.target.getAttribute('href')
-      Backbone.history.navigate href
-      @activate href
+      mediator.router.route(href)
     catch err
       console?.log err
 

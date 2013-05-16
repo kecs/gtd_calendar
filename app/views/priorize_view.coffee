@@ -4,3 +4,9 @@ View = require 'views/base/view'
 module.exports = class PriorizeView extends View
   template: template
   container: '#todo-list'
+  autoRender: on
+
+  #initialize: (collected) ->
+  #  super
+  #  console.log collected
+
