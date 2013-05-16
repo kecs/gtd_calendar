@@ -20,8 +20,9 @@ module.exports = class CollectView extends View
 
   addTodo: ->
     title = (@$el.find 'input').val()
-    @collection.create title: title
-    @render()
+    if title and not (@collection.where title: title).length
+      @collection.create title: title
+      @render()
 
 
 
