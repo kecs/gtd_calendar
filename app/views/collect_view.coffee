@@ -10,6 +10,7 @@ module.exports = class CollectView extends View
     super
     @delegate 'focus', 'input', @focus
     @delegate 'blur', 'input', @addTodo
+    @on 'addedToDOM', => (@$el.find 'input').focus()
 
   focus: (event) ->
     unbind = (e) =>

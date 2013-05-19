@@ -1,6 +1,5 @@
 View = require 'views/base/view'
 template = require 'views/templates/menu'
-Chaplin = require 'chaplin'
 mediator = require 'mediator'
 
 module.exports = class MenuView extends View
@@ -12,15 +11,15 @@ module.exports = class MenuView extends View
 
   initialize: ->
     super
-    Chaplin.mediator.subscribe 'route', (href) => @activate href 
-    @delegate('click', 'a:not([class="brand"])', @navigate)
+    mediator.subscribe 'route', (href) => @activate href 
+    @delegate 'click', 'a:not([class="brand"])', @navigate
 
   navigate: (e) ->
     e.preventDefault()
     e.stopPropagation()
     try
-      href = e.target.getAttribute('href')
-      mediator.router.route(href)
+      href = e.target.getAttribute 'href'
+      mediator.router.route href
     catch err
       console?.log err
 

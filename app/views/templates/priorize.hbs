@@ -1,1 +1,11 @@
-priorize
+<ul style="display:none">
+  {{#each items}}
+    {{#unless moved}}
+    <li style="color:red">
+    {{else}}
+    <li>
+    {{/unless}}
+    {{title}}
+    </li>
+  {{/each}}
+</ul>

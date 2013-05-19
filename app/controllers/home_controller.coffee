@@ -17,14 +17,16 @@ module.exports = class HomeController extends Controller
     super
     # namespace hack for LocalStorage
     Backbone.$ = $
+    todosCollected.fetch()
+    todosPriorized.fetch()
+    mediator.collected = todosCollected
 
   priorize: ->
-    @view = new PriorizeView(collection: todosPriorized)
+    @view = new PriorizeView collection: todosPriorized
     mediator.publish 'route', 'priorize'
 
   collect: ->
-    todosCollected.fetch()
-    @view = new CollectView(collection: todosCollected)
+    @view = new CollectView collection: todosCollected
     mediator.publish 'route', 'collect'
 
   weekly: ->
