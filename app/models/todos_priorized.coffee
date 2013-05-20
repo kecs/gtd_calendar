@@ -7,3 +7,7 @@ module.exports = class TodosPriorized extends Collection
 
   comparator: (model) -> model.get 'order'
   localStorage: new Backbone.LocalStorage 'gtd-todos-priorized'
+  destroy: (model) ->
+    @remove model
+    @localStorage.destroy model
+    model

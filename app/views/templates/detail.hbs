@@ -1,0 +1,20 @@
+<h2>{{title}}
+  <i class="icon-remove pull-right"></i>
+  <i class="icon-ok pull-right"></i>
+</h2>
+<h5>({{getDueDate this}})</h5>
+
+
+{{#if firstSteps}}
+  <ol>
+  {{#each firstSteps}}
+    <li>{{this}}</li>    
+  {{/each}}
+  </ol>
+{{else}}
+  <div class="alert">
+  You must specify first steps!
+  </div>
+{{/if}}
+
+<input type="text" placeholder="Step" />
