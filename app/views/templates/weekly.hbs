@@ -1,1 +1,6 @@
-weekly
+<ul>
+{{#each items}}
+  <li>{{title}} <span class="pull-right">({{getDueDate this}})</span>
+  <i class="icon-eye-open" style="display:none"></i></li>
+{{/each}}  
+</ul>

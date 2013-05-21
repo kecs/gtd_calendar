@@ -6,7 +6,7 @@ __ = (args...) -> console.log '[*] ', args...
 
 
 clear = (text) ->
-  text.replace /\W+/gi, ''
+  (/\w+.*\w+/gi.exec text)[0]
 
 
 module.exports = class PriorizeView extends View
@@ -28,6 +28,11 @@ module.exports = class PriorizeView extends View
           moved: no
         
     mediator.collected.each (todo) -> todo.destroy()
+    
+    @collection.reset @collection.filter (todo) ->
+      dueDate = new Date todo.get 'dueDate'
+      tomorrow = new Date(Date.now() + 1000*60*60*24) 
+      dueDate < tomorrow
 
     @on 'addedToDOM', =>
       (@$el.find 'ul').slideDown()

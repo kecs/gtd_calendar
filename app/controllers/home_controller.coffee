@@ -30,5 +30,5 @@ module.exports = class HomeController extends Controller
     mediator.publish 'route', 'collect'
 
   weekly: ->
-    @view = new WeeklyView()
+    @view = new WeeklyView collection: todosPriorized
     mediator.publish 'route', 'weekly'
