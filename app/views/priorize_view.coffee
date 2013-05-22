@@ -24,7 +24,7 @@ module.exports = class PriorizeView extends View
         @collection.create
           title: title
           dueDate: Date.now()
-          order: max + i
+          order: max + i + 1
           moved: no
         
     mediator.collected.each (todo) -> todo.destroy()
