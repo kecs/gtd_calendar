@@ -4,7 +4,7 @@ module.exports = class Menu extends Model
   defaults:
     items: [
       {href: 'collect', title: 'Collect'},
-      {href: 'priorize', title: 'Priorize'},
+      {href: 'prioritize', title: 'Prioritize'},
       {href: 'weekly', title: 'Weekly'},
     ]
 

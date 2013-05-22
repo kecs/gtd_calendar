@@ -1,5 +1,5 @@
 module.exports = (match) ->
-  match '', 'home#priorize'
-  match 'priorize', 'home#priorize'
+  match '', 'home#prioritize'
+  match 'prioritize', 'home#prioritize'
   match 'collect', 'home#collect'
   match 'weekly', 'home#weekly'

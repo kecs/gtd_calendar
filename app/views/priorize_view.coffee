@@ -1,4 +1,4 @@
-template = require 'views/templates/priorize'
+template = require 'views/templates/prioritize'
 View = require 'views/base/view'
 mediator = require 'mediator'
 DetailView = require 'views/detail'
@@ -9,10 +9,10 @@ clear = (text) ->
   (/\w+.*\w+/gi.exec text)[0]
 
 
-module.exports = class PriorizeView extends View
+module.exports = class PrioritizeView extends View
   template: template
   container: '#todo-list'
-  className: 'priorize'
+  className: 'prioritize'
   autoRender: on
 
   initialize: ->

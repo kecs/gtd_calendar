@@ -1,12 +1,12 @@
-TodoPriorized = require 'models/todo_priorized'
+TodoPrioritized = require 'models/todo_prioritized'
 Collection = require 'models/base/collection'
 
 
-module.exports = class TodosPriorized extends Collection
-  @model = TodoPriorized
+module.exports = class TodosPrioritized extends Collection
+  @model = TodoPrioritized
 
   comparator: (model) -> model.get 'order'
-  localStorage: new Backbone.LocalStorage 'gtd-todos-priorized'
+  localStorage: new Backbone.LocalStorage 'gtd-todos-prioritized'
   destroy: (model) ->
     @remove model
     @localStorage.destroy model
