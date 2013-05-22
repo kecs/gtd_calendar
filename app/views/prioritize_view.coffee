@@ -1,4 +1,4 @@
-template = require 'views/templates/priorize'
+template = require 'views/templates/prioritize'
 View = require 'views/base/view'
 mediator = require 'mediator'
 DetailView = require 'views/detail'
@@ -6,13 +6,13 @@ __ = (args...) -> console.log '[*] ', args...
 
 
 clear = (text) ->
-  text.replace /\W+/gi, ''
+  (/\w+.*\w+/gi.exec text)[0]
 
 
-module.exports = class PriorizeView extends View
+module.exports = class PrioritizeView extends View
   template: template
   container: '#todo-list'
-  className: 'priorize'
+  className: 'prioritize'
   autoRender: on
 
   initialize: ->
@@ -24,10 +24,15 @@ module.exports = class PriorizeView extends View
         @collection.create
           title: title
           dueDate: Date.now()
-          order: max + i
+          order: max + i + 1
           moved: no
         
     mediator.collected.each (todo) -> todo.destroy()
+    
+    @collection.reset @collection.filter (todo) ->
+      dueDate = new Date todo.get 'dueDate'
+      tomorrow = new Date(Date.now() + 1000*60*60*24) 
+      dueDate < tomorrow
 
     @on 'addedToDOM', =>
       (@$el.find 'ul').slideDown()

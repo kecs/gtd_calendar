@@ -2,6 +2,9 @@ View = require 'views/base/view'
 template = require 'views/templates/detail'
 __ = (args...) -> console.log '[*] ', args...
 
+clear = (text) ->
+  (/\w+.*\w+/gi.exec text)[0]
+
 module.exports = class DetailView extends View
   template: template
   container: '#todo-detail'
@@ -13,10 +16,19 @@ module.exports = class DetailView extends View
     @parentView.disallowEdit()
     @delegate 'focus', 'input', @focus
     @delegate 'blur', 'input', @addFirstStep
+    @delegate 'click', 'li i.icon-remove', @removeStep
+      
     @on 'addedToDOM', =>
       (@$el.find 'input').focus()
-      (@$el.find 'i.icon-remove').click @remove
+      (@$el.find '#remove').click @remove
       (@$el.find 'i.icon-ok').click @done
+      (@$el.find '#due-date').css('cursor', 'pointer')
+      .click @setDueDate
+      (@$el.find 'li').hover(
+        (e) => @$(e.target).append '<i class="icon-remove"></i>'
+        ,
+        (e) => @$(e.target).find('i.icon-remove').remove()
+      )
 
     Handlebars.registerHelper 'getDueDate', @getDueDate
 
@@ -61,3 +73,19 @@ module.exports = class DetailView extends View
 
   getDueDate: =>
     $.datepicker.formatDate 'd MM yy', new Date @model.get 'dueDate'
+
+  setDueDate: =>
+    $datepicker = $('#datepicker')
+    $datepicker.datepicker onSelect: (date) =>
+      dueDate = $.datepicker.parseDate('mm/dd/yy', date).getTime()
+      @model.save dueDate: dueDate
+      $datepicker.slideUp 'slow', @render
+
+    $('a.ui-datepicker-next').append '<i class="icon-arrow-right"></i>'
+    $('a.ui-datepicker-prev').append '<i class="icon-arrow-left"></i>'
+
+  removeStep: (e) =>
+    step = clear (@$ e.target).parent('li').detach().text()
+    @model.save firstSteps: _.without (@model.get 'firstSteps'), step
+    
+

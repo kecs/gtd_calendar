@@ -1,4 +1,4 @@
 TodoCollected = require 'models/todo_collected'
 
-module.exports = class TodoPriorized extends TodoCollected
+module.exports = class TodoPrioritized extends TodoCollected
   firstSteps: null

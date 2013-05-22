@@ -1,14 +1,14 @@
 <h2>{{title}}
-  <i class="icon-remove pull-right"></i>
-  <i class="icon-ok pull-right"></i>
+  <i id="remove" class="icon-remove pull-right" title="Completed"></i>
+  <i class="icon-ok pull-right" title="Finish editing"></i>
 </h2>
-<h5>({{getDueDate this}})</h5>
-
+<h5 id="due-date">({{getDueDate this}})</h5>
+<div id="datepicker"></div><br />
 
 {{#if firstSteps}}
   <ol>
   {{#each firstSteps}}
-    <li>{{this}}</li>    
+    <li>{{this}}</li>
   {{/each}}
   </ol>
 {{else}}
