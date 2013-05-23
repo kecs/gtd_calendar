@@ -739,7 +739,9 @@ window.require.register("models/todos_prioritized", function(exports, require, m
 });
 window.require.register("routes", function(exports, require, module) {
   module.exports = function(match) {
-    match('gtd_calendar', 'home#prioritize');
+    match('/gtd_calendar', 'home#prioritize');
+    match('/gtd_calendar/', 'home#prioritize');
+    match('gtd_calendar/', 'home#prioritize');
     match('gtd_calendar/prioritize', 'home#prioritize');
     match('gtd_calendar/collect', 'home#collect');
     return match('gtd_calendar/weekly', 'home#weekly');
